@@ -11,7 +11,7 @@ using ToDo.API.Database;
 namespace ToDo.API.Migrations
 {
     [DbContext(typeof(TaskContext))]
-    [Migration("20240515154209_InitialDb")]
+    [Migration("20240515185449_InitialDb")]
     partial class InitialDb
     {
         /// <inheritdoc />

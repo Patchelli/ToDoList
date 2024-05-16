@@ -15,6 +15,5 @@ namespace ToDo.API.Models
         [Required]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

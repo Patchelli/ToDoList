@@ -44,11 +44,12 @@ namespace ToDo.API.Repositories
             }
         }
 
-        public ToDo.API.Models.Task GetTask(int id)
+
+        public ToDo.API.Models.Task? GetTask(int id, string userId)
         {
             try
             {
-                return _taskcontext.Tasks.FirstOrDefault(t => t.Id == id);
+                return _taskcontext.Tasks.FirstOrDefault(t => t.Id == id && t.UserId == userId);
             }
             catch (Exception ex)
             {
@@ -56,17 +57,19 @@ namespace ToDo.API.Repositories
             }
         }
 
-        public List<ToDo.API.Models.Task> GetTasks(string email)
+
+        public List<ToDo.API.Models.Task> GetTasks(string userId)
         {
             try
             {
-                return _taskcontext.Tasks.Where(t => t.User.Email == email).ToList();
+                return _taskcontext.Tasks.Where(t => t.UserId == userId).ToList();
             }
             catch (Exception ex)
             {
                 throw new Exception("Erro ao obter tarefas: " + ex.Message);
             }
         }
+
 
         public void UpdateTask(ToDo.API.Models.Task task)
         {
@@ -81,4 +84,5 @@ namespace ToDo.API.Repositories
             }
         }
     }
+
 }
