@@ -11,5 +11,8 @@ namespace ToDo.API.Models
         [ForeignKey("UserId")]
         public virtual ICollection<Task> Tasks { get; set; }
 
+        [ForeignKey("UserId")]
+        public virtual ICollection<Token> Tokens { get; set; }
+
     }
 }

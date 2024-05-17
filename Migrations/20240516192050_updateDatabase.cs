@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ToDo.API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDb : Migration
+    public partial class updateDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -184,6 +184,31 @@ namespace ToDo.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Token",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    RefreshToken = table.Column<string>(type: "TEXT", nullable: false),
+                    UserId = table.Column<string>(type: "TEXT", nullable: false),
+                    IsExpired = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ExpirationRefreshToken = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ExpirationToken = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    DateCreation = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Token", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Token_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -225,6 +250,11 @@ namespace ToDo.API.Migrations
                 name: "IX_Tasks_UserId",
                 table: "Tasks",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Token_UserId",
+                table: "Token",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -247,6 +277,9 @@ namespace ToDo.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tasks");
+
+            migrationBuilder.DropTable(
+                name: "Token");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

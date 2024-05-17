@@ -11,5 +11,7 @@ namespace ToDo.API.Database
         }
 
         public DbSet<ToDo.API.Models.Task> Tasks { get; set; }
+
+        public DbSet<Token> Token { get; set; }
     }
 }
