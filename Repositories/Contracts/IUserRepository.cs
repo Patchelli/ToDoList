@@ -8,5 +8,7 @@ namespace ToDo.API.Repositories.Contracts
 
         ApplicationUser GetUser(string email, string password);
 
+        ApplicationUser GetUserById(string id);
+
     }
 }

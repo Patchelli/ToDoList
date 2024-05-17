@@ -36,5 +36,10 @@ namespace ToDo.API.Repositories
             else
                 throw new Exception("Usuario não encontrado");
         }
+
+        public ApplicationUser GetUserById(string id)
+        {
+            return _userManager.FindByIdAsync(id).Result;
+        }
     }
 }

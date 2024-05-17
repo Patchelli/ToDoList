@@ -11,8 +11,8 @@ using ToDo.API.Database;
 namespace ToDo.API.Migrations
 {
     [DbContext(typeof(TaskContext))]
-    [Migration("20240515185449_InitialDb")]
-    partial class InitialDb
+    [Migration("20240516192050_updateDatabase")]
+    partial class updateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -261,6 +261,42 @@ namespace ToDo.API.Migrations
                     b.ToTable("Tasks");
                 });
 
+            modelBuilder.Entity("ToDo.API.Models.Token", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateCreation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateUpdate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ExpirationRefreshToken")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ExpirationToken")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsExpired")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Token");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -323,9 +359,22 @@ namespace ToDo.API.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ToDo.API.Models.Token", b =>
+                {
+                    b.HasOne("ToDo.API.Models.ApplicationUser", "User")
+                        .WithMany("Tokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ToDo.API.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Tasks");
+
+                    b.Navigation("Tokens");
                 });
 #pragma warning restore 612, 618
         }
