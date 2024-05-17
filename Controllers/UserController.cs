@@ -113,7 +113,7 @@ namespace ToDo.API.Controllers
             }
         }   
 
-        public TokenDTO BuildToken(ApplicationUser user)
+        private TokenDTO BuildToken(ApplicationUser user)
         {
             var claims = new[]
             {
