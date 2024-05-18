@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using ToDo.API.Database;
-using ToDo.API.Models;
+﻿using ToDo.API.Database;
 using ToDo.API.Repositories.Contracts;
 
 namespace ToDo.API.Repositories

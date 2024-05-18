@@ -1,6 +1,4 @@
-﻿using ToDo.API.Models;
-
-namespace ToDo.API.DTO
+﻿namespace ToDo.API.DTO
 {
     public class TokenDTO
     {

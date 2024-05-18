@@ -13,7 +13,6 @@ using ToDo.API.Repositories;
 using ToDo.API.Repositories.Contracts;
 using Task = System.Threading.Tasks.Task;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.OpenApi.Models;
 
 
@@ -139,6 +138,7 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
     });
 }
+
 
 
 app.UseStatusCodePages();
